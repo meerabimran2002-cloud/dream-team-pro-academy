@@ -80,6 +80,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Dream Team — Premium AI Academy" },
       { name: "description", content: "Premium AI Academy. Learn Prompt Engineering live with Dream Team." },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Dream Team — Premium AI Academy" },
+      { name: "twitter:title", content: "Dream Team — Premium AI Academy" },
+      { property: "og:description", content: "Premium AI Academy. Learn Prompt Engineering live with Dream Team." },
+      { name: "twitter:description", content: "Premium AI Academy. Learn Prompt Engineering live with Dream Team." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b5477c94-2b67-4a6d-a6d6-3c22aa8dcc6f/id-preview-d5831168--95d81928-529d-4443-b010-50411297a346.lovable.app-1780597071628.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b5477c94-2b67-4a6d-a6d6-3c22aa8dcc6f/id-preview-d5831168--95d81928-529d-4443-b010-50411297a346.lovable.app-1780597071628.png" },
+      { property: "og:type", content: "website" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
