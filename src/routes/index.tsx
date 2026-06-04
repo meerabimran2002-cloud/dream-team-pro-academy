@@ -1,29 +1,45 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Toaster } from "sonner";
+import { ThemeProvider } from "@/lib/theme-context";
+import { Navbar } from "@/components/Navbar";
+import { Hero } from "@/components/Hero";
+import { Founder } from "@/components/Founder";
+import { Curriculum } from "@/components/Curriculum";
+import { Journey } from "@/components/Journey";
+import { FAQ } from "@/components/FAQ";
+import { RegistrationForm } from "@/components/RegistrationForm";
+import { Feedback } from "@/components/Feedback";
+import { Contact, Footer } from "@/components/Contact";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Dream Team — Prompt Engineering Course | Premium AI Academy" },
+      { name: "description", content: "Master Prompt Engineering with Dream Team Academy. Live online classes, certificate, beginner-to-advanced. Starts 10 July." },
+      { property: "og:title", content: "Dream Team — Prompt Engineering Course" },
+      { property: "og:description", content: "Premium AI academy. Live classes. Certificate. Starts 10 July." },
+      { property: "og:type", content: "website" },
     ],
   }),
-  component: Index,
+  component: IndexPage,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function IndexPage() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <ThemeProvider>
+      <Toaster theme="dark" position="top-center" />
+      <Navbar />
+      <main>
+        <Hero />
+        <Founder />
+        <Curriculum />
+        <Journey />
+        <FAQ />
+        <RegistrationForm />
+        <Feedback />
+        <Contact />
+      </main>
+      <Footer />
+    </ThemeProvider>
   );
 }
