@@ -1,0 +1,97 @@
+import { Link } from "@tanstack/react-router";
+import { Sparkles, Palette, Languages, Shield } from "lucide-react";
+import { useState } from "react";
+import { useTheme, THEMES, type ThemeName, type Lang } from "@/lib/theme-context";
+import { useT } from "@/lib/i18n";
+
+export function Navbar() {
+  const { theme, setTheme, lang, setLang } = useTheme();
+  const t = useT();
+  const [openTheme, setOpenTheme] = useState(false);
+  const [openLang, setOpenLang] = useState(false);
+
+  return (
+    <header className="fixed top-0 inset-x-0 z-50 px-4 pt-4">
+      <div className="mx-auto max-w-7xl glass rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+        <Link to="/" className="flex items-center gap-2">
+          <div className="relative h-9 w-9 rounded-xl btn-3d grid place-items-center">
+            <Sparkles className="h-5 w-5" />
+          </div>
+          <div className="leading-tight">
+            <div className="font-display font-bold text-lg gradient-text">Dream Team</div>
+            <div className="text-[10px] uppercase tracking-widest text-muted-foreground">AI Academy</div>
+          </div>
+        </Link>
+
+        <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
+          <a href="#about" className="hover:text-foreground transition">{t.nav_about}</a>
+          <a href="#curriculum" className="hover:text-foreground transition">{t.nav_curriculum}</a>
+          <a href="#faq" className="hover:text-foreground transition">{t.nav_faq}</a>
+          <a href="#register" className="hover:text-foreground transition">{t.nav_register}</a>
+        </nav>
+
+        <div className="flex items-center gap-2">
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => { setOpenTheme(v => !v); setOpenLang(false); }}
+              aria-label="Theme"
+              className="h-10 w-10 rounded-xl glass grid place-items-center hover:scale-105 transition"
+            >
+              <Palette className="h-4 w-4" />
+            </button>
+            {openTheme && (
+              <div className="absolute right-0 mt-2 glass-strong rounded-xl p-2 min-w-[180px] animate-fade-up">
+                {THEMES.map(th => (
+                  <button
+                    type="button"
+                    key={th.id}
+                    onClick={() => { setTheme(th.id as ThemeName); setOpenTheme(false); }}
+                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-secondary/60 transition ${theme === th.id ? "bg-secondary/60" : ""}`}
+                  >
+                    <span className="h-5 w-5 rounded-full ring-1 ring-white/20" style={{ background: th.swatch }} />
+                    <span>{th.label}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => { setOpenLang(v => !v); setOpenTheme(false); }}
+              aria-label="Language"
+              className="h-10 px-3 rounded-xl glass flex items-center gap-2 text-sm hover:scale-105 transition"
+            >
+              <Languages className="h-4 w-4" />
+              <span className="uppercase">{lang}</span>
+            </button>
+            {openLang && (
+              <div className="absolute right-0 mt-2 glass-strong rounded-xl p-2 min-w-[140px] animate-fade-up">
+                {(["en", "ur"] as Lang[]).map(l => (
+                  <button
+                    type="button"
+                    key={l}
+                    onClick={() => { setLang(l); setOpenLang(false); }}
+                    className={`w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-secondary/60 transition ${lang === l ? "bg-secondary/60" : ""}`}
+                  >
+                    {l === "en" ? "English" : "اردو"}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <Link
+            to="/admin"
+            className="hidden sm:flex h-10 px-3 rounded-xl glass items-center gap-2 text-sm hover:scale-105 transition"
+          >
+            <Shield className="h-4 w-4" />
+            <span>{t.nav_admin}</span>
+          </Link>
+        </div>
+      </div>
+    </header>
+  );
+}
