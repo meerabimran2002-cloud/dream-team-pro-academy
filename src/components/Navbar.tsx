@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { Sparkles, Palette, Languages, Shield } from "lucide-react";
+import { Palette, Languages, Shield } from "lucide-react";
 import { useState } from "react";
 import { useTheme, THEMES, type ThemeName, type Lang } from "@/lib/theme-context";
 import { useT } from "@/lib/i18n";
+import logo from "@/assets/dream-team-logo.jpeg.asset.json";
 
 export function Navbar() {
   const { theme, setTheme, lang, setLang } = useTheme();
