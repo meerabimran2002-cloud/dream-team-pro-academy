@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { Sparkles, Palette, Languages, Shield } from "lucide-react";
+import { Palette, Languages, Shield } from "lucide-react";
 import { useState } from "react";
 import { useTheme, THEMES, type ThemeName, type Lang } from "@/lib/theme-context";
 import { useT } from "@/lib/i18n";
+import logo from "@/assets/dream-team-logo.jpeg.asset.json";
 
 export function Navbar() {
   const { theme, setTheme, lang, setLang } = useTheme();
@@ -14,8 +15,8 @@ export function Navbar() {
     <header className="fixed top-0 inset-x-0 z-50 px-4 pt-4">
       <div className="mx-auto max-w-7xl glass rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
         <Link to="/" className="flex items-center gap-2">
-          <div className="relative h-9 w-9 rounded-xl btn-3d grid place-items-center">
-            <Sparkles className="h-5 w-5" />
+          <div className="relative h-11 w-11 rounded-xl overflow-hidden ring-1 ring-white/15 shadow-lg">
+            <img src={logo.url} alt="Dream Team Academy" className="h-full w-full object-cover" />
           </div>
           <div className="leading-tight">
             <div className="font-display font-bold text-lg gradient-text">Dream Team</div>
