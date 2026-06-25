@@ -4,6 +4,7 @@ import { Toaster, toast } from "sonner";
 import { Loader2, LogOut, Search, Download, Users, Star, Mail, Shield, Trash2, ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { ThemeProvider } from "@/lib/theme-context";
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
