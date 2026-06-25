@@ -44,9 +44,10 @@ export function ScrollTop() {
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label={`Scroll to top — ${pct}% read`}
-        className={`fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full grid place-items-center transition-all duration-300 ${
-          show ? "opacity-100 translate-y-0" : "opacity-0 pointer-events-none translate-y-4"
+        className={`group fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full grid place-items-center transition-all duration-300 ${
+          show ? "opacity-100 translate-y-0 animate-float" : "opacity-0 pointer-events-none translate-y-4"
         }`}
+        style={{ filter: "drop-shadow(0 12px 28px color-mix(in oklab, var(--primary) 45%, transparent))" }}
       >
         <svg className="absolute inset-0 -rotate-90" viewBox="0 0 60 60">
           <circle
@@ -72,10 +73,14 @@ export function ScrollTop() {
             </linearGradient>
           </defs>
         </svg>
-        <span className="h-10 w-10 rounded-full btn-3d grid place-items-center">
-          <ArrowUp className="h-4 w-4" />
+        <span className="h-10 w-10 rounded-full btn-3d grid place-items-center transition-transform duration-300 group-hover:-translate-y-0.5 group-active:translate-y-0">
+          <ArrowUp className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
+        </span>
+        <span className="absolute right-full mr-3 px-2.5 py-1 rounded-lg glass-strong text-xs whitespace-nowrap opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition pointer-events-none">
+          {pct}%
         </span>
       </button>
     </>
   );
 }
+
