@@ -43,7 +43,7 @@ type FeedbackRow = {
 function AdminPage() {
   return (
     <ThemeProvider>
-      <Toaster theme="dark" position="top-center" />
+      <Toaster position="top-center" />
       <AdminInner />
     </ThemeProvider>
   );
