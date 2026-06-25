@@ -36,8 +36,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
 
   useEffect(() => {
-    const t = (typeof window !== "undefined" && localStorage.getItem("dt-theme")) as ThemeName | null;
-    const l = (typeof window !== "undefined" && localStorage.getItem("dt-lang")) as Lang | null;
+    const t = localStorage.getItem("dt-theme") as ThemeName | null;
+    const l = localStorage.getItem("dt-lang") as Lang | null;
     if (t) setThemeState(t);
     if (l) setLangState(l);
   }, []);
