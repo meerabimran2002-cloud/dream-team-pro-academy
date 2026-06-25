@@ -96,6 +96,7 @@ function AuthPanel() {
       <Link to="/" className="absolute top-6 left-6 glass rounded-xl px-3 py-2 text-sm flex items-center gap-2 hover:scale-105 transition">
         <ArrowLeft className="h-4 w-4" /> Back to site
       </Link>
+      <div className="absolute top-6 right-6"><ThemeSwitcher /></div>
       <div className="w-full max-w-md glass-strong rounded-3xl p-8 sm:p-10 relative">
         <div className="flex flex-col items-center text-center">
           <div className="h-14 w-14 rounded-2xl btn-3d grid place-items-center">
