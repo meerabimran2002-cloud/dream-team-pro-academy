@@ -149,10 +149,75 @@
   --ring: oklch(0.82 0.16 85);
 }
 
+/* ---------- LIGHT THEMES ---------- */
+[data-theme="snow"] {
+  --background: oklch(0.98 0.005 250);
+  --foreground: oklch(0.18 0.03 250);
+  --card: oklch(1 0 0 / 0.7);
+  --card-foreground: oklch(0.18 0.03 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.03 250);
+  --primary: oklch(0.55 0.2 250);
+  --primary-foreground: oklch(0.99 0 0);
+  --primary-glow: oklch(0.68 0.18 230);
+  --secondary: oklch(0.95 0.02 250);
+  --secondary-foreground: oklch(0.2 0.04 250);
+  --muted: oklch(0.95 0.01 250);
+  --muted-foreground: oklch(0.45 0.03 250);
+  --accent: oklch(0.62 0.22 270);
+  --accent-foreground: oklch(0.99 0 0);
+  --border: oklch(0.2 0.03 250 / 0.12);
+  --input: oklch(0.2 0.03 250 / 0.06);
+  --ring: oklch(0.55 0.2 250);
+}
+
+[data-theme="cream"] {
+  --background: oklch(0.98 0.02 85);
+  --foreground: oklch(0.2 0.03 60);
+  --card: oklch(1 0.01 85 / 0.75);
+  --card-foreground: oklch(0.2 0.03 60);
+  --popover: oklch(1 0.01 85);
+  --popover-foreground: oklch(0.2 0.03 60);
+  --primary: oklch(0.62 0.18 55);
+  --primary-foreground: oklch(0.99 0 0);
+  --primary-glow: oklch(0.72 0.16 70);
+  --secondary: oklch(0.94 0.03 80);
+  --secondary-foreground: oklch(0.22 0.04 60);
+  --muted: oklch(0.94 0.02 80);
+  --muted-foreground: oklch(0.45 0.04 60);
+  --accent: oklch(0.65 0.2 40);
+  --accent-foreground: oklch(0.99 0 0);
+  --border: oklch(0.2 0.03 60 / 0.12);
+  --input: oklch(0.2 0.03 60 / 0.06);
+  --ring: oklch(0.62 0.18 55);
+}
+
+[data-theme="mist"] {
+  --background: oklch(0.97 0.015 280);
+  --foreground: oklch(0.2 0.04 280);
+  --card: oklch(1 0 0 / 0.7);
+  --card-foreground: oklch(0.2 0.04 280);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.04 280);
+  --primary: oklch(0.58 0.22 295);
+  --primary-foreground: oklch(0.99 0 0);
+  --primary-glow: oklch(0.7 0.2 310);
+  --secondary: oklch(0.94 0.02 280);
+  --secondary-foreground: oklch(0.22 0.04 280);
+  --muted: oklch(0.95 0.015 280);
+  --muted-foreground: oklch(0.46 0.04 280);
+  --accent: oklch(0.62 0.24 320);
+  --accent-foreground: oklch(0.99 0 0);
+  --border: oklch(0.2 0.04 280 / 0.12);
+  --input: oklch(0.2 0.04 280 / 0.06);
+  --ring: oklch(0.58 0.22 295);
+}
+
 :root {
   --destructive: oklch(0.65 0.24 25);
   --destructive-foreground: oklch(0.98 0 0);
 }
+
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -246,8 +311,18 @@
 @utility glow-orb {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(80px);
-  opacity: 0.5;
+  filter: blur(110px);
+  opacity: 0.22;
   pointer-events: none;
-  animation: float 8s ease-in-out infinite;
+  animation: float 10s ease-in-out infinite;
 }
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 45%, transparent); }
+  70% { box-shadow: 0 0 0 14px color-mix(in oklab, var(--primary) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+@utility pulse-ring {
+  animation: pulse-ring 2s ease-out infinite;
+}
+
