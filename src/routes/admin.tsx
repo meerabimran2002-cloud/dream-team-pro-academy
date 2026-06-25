@@ -227,6 +227,7 @@ function Dashboard() {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <ThemeSwitcher />
             <Link to="/" className="glass rounded-xl px-3 py-2 text-sm hover:scale-105 transition">View Site</Link>
             <button
               type="button"
