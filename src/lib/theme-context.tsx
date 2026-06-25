@@ -1,14 +1,25 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
-export type ThemeName = "purple" | "blue" | "emerald" | "rose" | "gold";
+export type ThemeName =
+  | "purple"
+  | "blue"
+  | "emerald"
+  | "rose"
+  | "gold"
+  | "snow"
+  | "cream"
+  | "mist";
 export type Lang = "en" | "ur";
 
-export const THEMES: { id: ThemeName; label: string; swatch: string }[] = [
-  { id: "purple", label: "Purple", swatch: "linear-gradient(135deg,#a855f7,#ec4899)" },
-  { id: "blue", label: "Blue", swatch: "linear-gradient(135deg,#3b82f6,#06b6d4)" },
-  { id: "emerald", label: "Emerald", swatch: "linear-gradient(135deg,#10b981,#22d3ee)" },
-  { id: "rose", label: "Rose", swatch: "linear-gradient(135deg,#f43f5e,#ec4899)" },
-  { id: "gold", label: "Gold", swatch: "linear-gradient(135deg,#f59e0b,#fbbf24)" },
+export const THEMES: { id: ThemeName; label: string; swatch: string; tone: "dark" | "light" }[] = [
+  { id: "purple", label: "Purple Night", swatch: "linear-gradient(135deg,#a855f7,#ec4899)", tone: "dark" },
+  { id: "blue", label: "Deep Ocean", swatch: "linear-gradient(135deg,#3b82f6,#06b6d4)", tone: "dark" },
+  { id: "emerald", label: "Emerald", swatch: "linear-gradient(135deg,#10b981,#22d3ee)", tone: "dark" },
+  { id: "rose", label: "Rose", swatch: "linear-gradient(135deg,#f43f5e,#ec4899)", tone: "dark" },
+  { id: "gold", label: "Royal Gold", swatch: "linear-gradient(135deg,#f59e0b,#fbbf24)", tone: "dark" },
+  { id: "snow", label: "Snow Light", swatch: "linear-gradient(135deg,#e2e8f0,#3b82f6)", tone: "light" },
+  { id: "cream", label: "Cream Light", swatch: "linear-gradient(135deg,#fef3c7,#f59e0b)", tone: "light" },
+  { id: "mist", label: "Mist Light", swatch: "linear-gradient(135deg,#dbeafe,#a855f7)", tone: "light" },
 ];
 
 type Ctx = {

@@ -3,6 +3,8 @@ import { Toaster } from "sonner";
 import { ThemeProvider } from "@/lib/theme-context";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
+import { Countdown } from "@/components/Countdown";
+import { StatsBar } from "@/components/StatsBar";
 import { Founder } from "@/components/Founder";
 import { Curriculum } from "@/components/Curriculum";
 import { Journey } from "@/components/Journey";
@@ -10,6 +12,7 @@ import { FAQ } from "@/components/FAQ";
 import { RegistrationForm } from "@/components/RegistrationForm";
 import { Feedback } from "@/components/Feedback";
 import { Contact, Footer } from "@/components/Contact";
+import { ScrollTop } from "@/components/ScrollTop";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,10 +30,12 @@ export const Route = createFileRoute("/")({
 function IndexPage() {
   return (
     <ThemeProvider>
-      <Toaster theme="dark" position="top-center" />
+      <Toaster position="top-center" />
       <Navbar />
       <main>
         <Hero />
+        <Countdown />
+        <StatsBar />
         <Founder />
         <Curriculum />
         <Journey />
@@ -40,6 +45,7 @@ function IndexPage() {
         <Contact />
       </main>
       <Footer />
+      <ScrollTop />
     </ThemeProvider>
   );
 }
