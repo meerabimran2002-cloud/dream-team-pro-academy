@@ -15,9 +15,10 @@ function diff() {
 }
 
 export function Countdown() {
-  const [t, setT] = useState(diff());
+  const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0 });
   const i18n = useT();
   useEffect(() => {
+    setT(diff());
     const id = setInterval(() => setT(diff()), 1000);
     return () => clearInterval(id);
   }, []);
