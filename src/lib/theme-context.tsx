@@ -22,6 +22,21 @@ export const THEMES: { id: ThemeName; label: string; swatch: string; tone: "dark
   { id: "mist", label: "Mist Light", swatch: "linear-gradient(135deg,#dbeafe,#a855f7)", tone: "light" },
 ];
 
+const THEME_IDS = new Set(THEMES.map(t => t.id));
+const LANG_IDS = new Set<Lang>(["en", "ur"]);
+
+function getStoredTheme(): ThemeName {
+  if (typeof window === "undefined") return "purple";
+  const t = window.localStorage.getItem("dt-theme") as ThemeName | null;
+  return t && THEME_IDS.has(t) ? t : "purple";
+}
+
+function getStoredLang(): Lang {
+  if (typeof window === "undefined") return "en";
+  const l = window.localStorage.getItem("dt-lang") as Lang | null;
+  return l && LANG_IDS.has(l) ? l : "en";
+}
+
 type Ctx = {
   theme: ThemeName;
   setTheme: (t: ThemeName) => void;
@@ -32,15 +47,8 @@ type Ctx = {
 const ThemeCtx = createContext<Ctx | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<ThemeName>("purple");
-  const [lang, setLangState] = useState<Lang>("en");
-
-  useEffect(() => {
-    const t = localStorage.getItem("dt-theme") as ThemeName | null;
-    const l = localStorage.getItem("dt-lang") as Lang | null;
-    if (t) setThemeState(t);
-    if (l) setLangState(l);
-  }, []);
+  const [theme, setThemeState] = useState<ThemeName>(getStoredTheme);
+  const [lang, setLangState] = useState<Lang>(getStoredLang);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -52,6 +60,19 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     document.documentElement.setAttribute("dir", lang === "ur" ? "rtl" : "ltr");
     localStorage.setItem("dt-lang", lang);
   }, [lang]);
+
+  useEffect(() => {
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === "dt-theme" && e.newValue && THEME_IDS.has(e.newValue as ThemeName)) {
+        setThemeState(e.newValue as ThemeName);
+      }
+      if (e.key === "dt-lang" && e.newValue && LANG_IDS.has(e.newValue as Lang)) {
+        setLangState(e.newValue as Lang);
+      }
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, []);
 
   return (
     <ThemeCtx.Provider value={{ theme, setTheme: setThemeState, lang, setLang: setLangState }}>

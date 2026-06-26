@@ -1,9 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { Toaster, toast } from "sonner";
-import { Loader2, LogOut, Search, Download, Users, Star, Mail, Shield, Trash2, ArrowLeft } from "lucide-react";
+import { Loader2, LogOut, Search, Download, Users, Star, Mail, Shield, Trash2, ArrowLeft, Sparkles, TrendingUp } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { ThemeProvider } from "@/lib/theme-context";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 export const Route = createFileRoute("/admin")({
@@ -43,10 +42,10 @@ type FeedbackRow = {
 
 function AdminPage() {
   return (
-    <ThemeProvider>
+    <>
       <Toaster position="top-center" />
       <AdminInner />
-    </ThemeProvider>
+    </>
   );
 }
 
@@ -182,6 +181,12 @@ function Dashboard() {
 
   const eduOptions = useMemo(() => Array.from(new Set(regs.map(r => r.education_level))).filter(Boolean), [regs]);
   const avgRating = useMemo(() => fbs.length ? (fbs.reduce((a, b) => a + b.rating, 0) / fbs.length).toFixed(1) : "—", [fbs]);
+  const weeklyRegs = useMemo(() => regs.filter(r => Date.now() - new Date(r.created_at).getTime() <= 7 * 24 * 60 * 60 * 1000).length, [regs]);
+  const topCity = useMemo(() => {
+    const counts = new Map<string, number>();
+    regs.forEach(r => counts.set(r.city, (counts.get(r.city) ?? 0) + 1));
+    return Array.from(counts.entries()).sort((a, b) => b[1] - a[1])[0]?.[0] ?? "—";
+  }, [regs]);
 
   function exportCSV() {
     const rows = filteredRegs;
@@ -243,6 +248,37 @@ function Dashboard() {
           <Stat icon={Users} label="Total Registrations" value={regs.length} />
           <Stat icon={Star} label="Avg Feedback Rating" value={avgRating} />
           <Stat icon={Mail} label="Feedback Messages" value={fbs.length} />
+        </div>
+
+        <div className="mt-6 grid lg:grid-cols-[1.2fr_0.8fr] gap-4">
+          <div className="glass rounded-2xl p-5 overflow-hidden relative">
+            <div className="absolute inset-0 pointer-events-none opacity-50" style={{ background: "radial-gradient(circle at 12% 20%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 34%)" }} />
+            <div className="relative flex items-center gap-3">
+              <div className="h-11 w-11 rounded-xl btn-3d grid place-items-center"><Sparkles className="h-5 w-5" /></div>
+              <div>
+                <div className="text-xs uppercase tracking-widest text-muted-foreground">Smart Admin Brief</div>
+                <div className="font-display text-xl font-bold gradient-text">{weeklyRegs} new leads this week</div>
+              </div>
+            </div>
+            <div className="relative mt-4 grid sm:grid-cols-3 gap-3 text-sm">
+              <div className="rounded-xl bg-secondary/45 p-3"><span className="text-muted-foreground">Top city</span><div className="font-semibold">{topCity}</div></div>
+              <div className="rounded-xl bg-secondary/45 p-3"><span className="text-muted-foreground">Active filter</span><div className="font-semibold">{filteredRegs.length} visible</div></div>
+              <div className="rounded-xl bg-secondary/45 p-3"><span className="text-muted-foreground">Action</span><div className="font-semibold">Export ready</div></div>
+            </div>
+          </div>
+          <div className="glass rounded-2xl p-5">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <div className="text-xs uppercase tracking-widest text-muted-foreground">Course Seat Pulse</div>
+                <div className="font-display text-xl font-bold">{Math.min(100, Math.round((regs.length / 50) * 100))}% filled</div>
+              </div>
+              <TrendingUp className="h-5 w-5 text-primary" />
+            </div>
+            <div className="mt-5 h-3 rounded-full bg-secondary overflow-hidden">
+              <div className="h-full rounded-full" style={{ width: `${Math.min(100, Math.round((regs.length / 50) * 100))}%`, background: "linear-gradient(90deg, var(--primary), var(--accent))" }} />
+            </div>
+            <div className="mt-3 text-xs text-muted-foreground">Live progress toward a 50-student cohort.</div>
+          </div>
         </div>
 
         <div className="mt-6 glass rounded-2xl p-2 inline-flex gap-1">

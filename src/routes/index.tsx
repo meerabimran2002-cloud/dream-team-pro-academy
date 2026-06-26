@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Toaster } from "sonner";
-import { ThemeProvider } from "@/lib/theme-context";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Countdown } from "@/components/Countdown";
 import { StatsBar } from "@/components/StatsBar";
+import { PromptStudio } from "@/components/PromptStudio";
 import { Founder } from "@/components/Founder";
 import { Curriculum } from "@/components/Curriculum";
 import { Journey } from "@/components/Journey";
@@ -29,13 +29,14 @@ export const Route = createFileRoute("/")({
 
 function IndexPage() {
   return (
-    <ThemeProvider>
+    <>
       <Toaster position="top-center" />
       <Navbar />
       <main>
         <Hero />
         <Countdown />
         <StatsBar />
+        <PromptStudio />
         <Founder />
         <Curriculum />
         <Journey />
@@ -46,6 +47,6 @@ function IndexPage() {
       </main>
       <Footer />
       <ScrollTop />
-    </ThemeProvider>
+    </>
   );
 }
