@@ -89,7 +89,7 @@ const dict = {
     contact_title: "رابطہ کریں",
     cd_title: "بیچ کی صورتحال",
     batch1_status: "بیچ 1 — جاری ہے (رجسٹریشن بند)",
-    batch2_status: "بیچ 2 — رجسٹریشن کھلی ہے (تاریخ جلد اعلان)",
+    batch2_status: "بیچ 2 — رجسٹریشن کھلی ہے (10 اگست سے شروع)",
     cd_days: "دن",
     cd_hours: "گھنٹے",
     cd_minutes: "منٹ",
