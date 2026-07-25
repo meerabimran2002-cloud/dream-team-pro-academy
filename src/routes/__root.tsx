@@ -109,7 +109,7 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem('dt-theme');if(t)document.documentElement.setAttribute('data-theme',t);var l=localStorage.getItem('dt-lang');if(l){document.documentElement.setAttribute('lang',l);document.documentElement.setAttribute('dir',l==='ur'?'rtl':'ltr')}}catch(e){}`,
+            __html: `try{var t=localStorage.getItem('dt-theme')||'snow';document.documentElement.setAttribute('data-theme',t);var l=localStorage.getItem('dt-lang');if(l){document.documentElement.setAttribute('lang',l);document.documentElement.setAttribute('dir',l==='ur'?'rtl':'ltr')}}catch(e){document.documentElement.setAttribute('data-theme','snow')}`,
           }}
         />
       </head>
