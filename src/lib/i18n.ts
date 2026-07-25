@@ -35,7 +35,7 @@ const dict = {
     contact_title: "Get in Touch",
     cd_title: "Batch Status",
     batch1_status: "Batch 1 — In Progress (Registration Closed)",
-    batch2_status: "Batch 2 — Registration Open (Dates Announcing Soon)",
+    batch2_status: "Batch 2 — Registration Open (Starts 10 August)",
     cd_days: "Days",
     cd_hours: "Hours",
     cd_minutes: "Minutes",
