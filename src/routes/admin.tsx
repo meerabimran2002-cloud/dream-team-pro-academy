@@ -172,14 +172,18 @@ function Dashboard() {
     setLoading(false);
   }
 
+  const batchRegs = useMemo(() => regs.filter(r => (r.batch ?? 2) === batchTab), [regs, batchTab]);
+  const batch1Count = useMemo(() => regs.filter(r => (r.batch ?? 2) === 1).length, [regs]);
+  const batch2Count = useMemo(() => regs.filter(r => (r.batch ?? 2) === 2).length, [regs]);
+
   const filteredRegs = useMemo(() => {
     const qq = q.trim().toLowerCase();
-    return regs.filter(r => {
+    return batchRegs.filter(r => {
       const matchQ = !qq || [r.full_name, r.email, r.phone, r.city, r.father_name].some(v => v?.toLowerCase().includes(qq));
       const matchEdu = !filterEdu || r.education_level === filterEdu;
       return matchQ && matchEdu;
     });
-  }, [regs, q, filterEdu]);
+  }, [batchRegs, q, filterEdu]);
 
   const eduOptions = useMemo(() => Array.from(new Set(regs.map(r => r.education_level))).filter(Boolean), [regs]);
   const avgRating = useMemo(() => fbs.length ? (fbs.reduce((a, b) => a + b.rating, 0) / fbs.length).toFixed(1) : "—", [fbs]);
