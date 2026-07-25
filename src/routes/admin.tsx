@@ -302,6 +302,24 @@ function Dashboard() {
 
         {tab === "registrations" ? (
           <div className="mt-4 glass rounded-2xl p-4 sm:p-6">
+            <div className="mb-4 flex flex-wrap items-center gap-2">
+              {([1, 2] as const).map(b => (
+                <button
+                  key={b}
+                  type="button"
+                  onClick={() => setBatchTab(b)}
+                  className={`px-4 py-2 rounded-xl text-sm font-medium transition flex items-center gap-2 ${batchTab === b ? "btn-3d" : "glass hover:scale-105"}`}
+                >
+                  <span>Batch {b}</span>
+                  <span className={`text-xs px-2 py-0.5 rounded-full ${batchTab === b ? "bg-background/30" : "bg-secondary/70"}`}>
+                    {b === 1 ? batch1Count : batch2Count}
+                  </span>
+                  <span className="text-[10px] uppercase tracking-widest opacity-70">
+                    {b === 1 ? "Closed" : "Starts 10 Aug"}
+                  </span>
+                </button>
+              ))}
+            </div>
             <div className="flex flex-wrap items-center gap-3">
               <div className="relative flex-1 min-w-[220px]">
                 <Search className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
