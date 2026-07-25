@@ -53,7 +53,7 @@ export function RegistrationForm() {
     setLoading(true);
     const { terms, ...row } = parsed.data;
     void terms;
-    const { error } = await supabase.from("registrations").insert(row);
+    const { error } = await supabase.from("registrations").insert({ ...row, batch: 2 });
     setLoading(false);
     if (error) {
       toast.error(error.message);

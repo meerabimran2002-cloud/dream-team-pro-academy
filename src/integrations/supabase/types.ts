@@ -44,6 +44,7 @@ export type Database = {
       registrations: {
         Row: {
           ai_experience: boolean
+          batch: number
           city: string
           created_at: string
           date_of_birth: string
@@ -59,6 +60,7 @@ export type Database = {
         }
         Insert: {
           ai_experience?: boolean
+          batch?: number
           city: string
           created_at?: string
           date_of_birth: string
@@ -74,6 +76,7 @@ export type Database = {
         }
         Update: {
           ai_experience?: boolean
+          batch?: number
           city?: string
           created_at?: string
           date_of_birth?: string

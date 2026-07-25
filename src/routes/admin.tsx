@@ -29,6 +29,7 @@ type Registration = {
   ai_experience: boolean;
   motivation: string;
   created_at: string;
+  batch: number;
 };
 
 type FeedbackRow = {
@@ -147,6 +148,7 @@ function AuthPanel() {
 
 function Dashboard() {
   const [tab, setTab] = useState<"registrations" | "feedback">("registrations");
+  const [batchTab, setBatchTab] = useState<1 | 2>(2);
   const [regs, setRegs] = useState<Registration[]>([]);
   const [fbs, setFbs] = useState<FeedbackRow[]>([]);
   const [q, setQ] = useState("");
@@ -170,14 +172,18 @@ function Dashboard() {
     setLoading(false);
   }
 
+  const batchRegs = useMemo(() => regs.filter(r => (r.batch ?? 2) === batchTab), [regs, batchTab]);
+  const batch1Count = useMemo(() => regs.filter(r => (r.batch ?? 2) === 1).length, [regs]);
+  const batch2Count = useMemo(() => regs.filter(r => (r.batch ?? 2) === 2).length, [regs]);
+
   const filteredRegs = useMemo(() => {
     const qq = q.trim().toLowerCase();
-    return regs.filter(r => {
+    return batchRegs.filter(r => {
       const matchQ = !qq || [r.full_name, r.email, r.phone, r.city, r.father_name].some(v => v?.toLowerCase().includes(qq));
       const matchEdu = !filterEdu || r.education_level === filterEdu;
       return matchQ && matchEdu;
     });
-  }, [regs, q, filterEdu]);
+  }, [batchRegs, q, filterEdu]);
 
   const eduOptions = useMemo(() => Array.from(new Set(regs.map(r => r.education_level))).filter(Boolean), [regs]);
   const avgRating = useMemo(() => fbs.length ? (fbs.reduce((a, b) => a + b.rating, 0) / fbs.length).toFixed(1) : "—", [fbs]);
@@ -296,6 +302,24 @@ function Dashboard() {
 
         {tab === "registrations" ? (
           <div className="mt-4 glass rounded-2xl p-4 sm:p-6">
+            <div className="mb-4 flex flex-wrap items-center gap-2">
+              {([1, 2] as const).map(b => (
+                <button
+                  key={b}
+                  type="button"
+                  onClick={() => setBatchTab(b)}
+                  className={`px-4 py-2 rounded-xl text-sm font-medium transition flex items-center gap-2 ${batchTab === b ? "btn-3d" : "glass hover:scale-105"}`}
+                >
+                  <span>Batch {b}</span>
+                  <span className={`text-xs px-2 py-0.5 rounded-full ${batchTab === b ? "bg-background/30" : "bg-secondary/70"}`}>
+                    {b === 1 ? batch1Count : batch2Count}
+                  </span>
+                  <span className="text-[10px] uppercase tracking-widest opacity-70">
+                    {b === 1 ? "Closed" : "Starts 10 Aug"}
+                  </span>
+                </button>
+              ))}
+            </div>
             <div className="flex flex-wrap items-center gap-3">
               <div className="relative flex-1 min-w-[220px]">
                 <Search className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
