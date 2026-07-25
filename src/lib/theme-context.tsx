@@ -26,9 +26,9 @@ const THEME_IDS = new Set(THEMES.map(t => t.id));
 const LANG_IDS = new Set<Lang>(["en", "ur"]);
 
 function getStoredTheme(): ThemeName {
-  if (typeof window === "undefined") return "purple";
+  if (typeof window === "undefined") return "snow";
   const t = window.localStorage.getItem("dt-theme") as ThemeName | null;
-  return t && THEME_IDS.has(t) ? t : "purple";
+  return t && THEME_IDS.has(t) ? t : "snow";
 }
 
 function getStoredLang(): Lang {

@@ -86,10 +86,11 @@ export function Navbar() {
 
           <Link
             to="/admin"
-            className="hidden sm:flex h-10 px-3 rounded-xl glass items-center gap-2 text-sm hover:scale-105 transition"
+            aria-label={t.nav_admin}
+            className="h-10 px-2 sm:px-3 rounded-xl glass flex items-center gap-2 text-sm hover:scale-105 transition"
           >
             <Shield className="h-4 w-4" />
-            <span>{t.nav_admin}</span>
+            <span className="hidden sm:inline">{t.nav_admin}</span>
           </Link>
         </div>
       </div>
