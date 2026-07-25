@@ -29,6 +29,7 @@ type Registration = {
   ai_experience: boolean;
   motivation: string;
   created_at: string;
+  batch: number;
 };
 
 type FeedbackRow = {
