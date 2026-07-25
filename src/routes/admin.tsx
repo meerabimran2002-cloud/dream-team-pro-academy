@@ -148,6 +148,7 @@ function AuthPanel() {
 
 function Dashboard() {
   const [tab, setTab] = useState<"registrations" | "feedback">("registrations");
+  const [batchTab, setBatchTab] = useState<1 | 2>(2);
   const [regs, setRegs] = useState<Registration[]>([]);
   const [fbs, setFbs] = useState<FeedbackRow[]>([]);
   const [q, setQ] = useState("");
