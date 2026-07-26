@@ -28,13 +28,13 @@ export function Navbar() {
           <a href="#register" className="hover:text-foreground transition">{t.nav_register}</a>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <div className="relative">
             <button
               type="button"
               onClick={() => { setOpenTheme(v => !v); setOpenLang(false); }}
               aria-label="Theme"
-              className="h-10 w-10 rounded-xl glass grid place-items-center hover:scale-105 transition"
+              className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl glass grid place-items-center hover:scale-105 transition"
             >
               <Palette className="h-4 w-4" />
             </button>
@@ -60,7 +60,7 @@ export function Navbar() {
               type="button"
               onClick={() => { setOpenLang(v => !v); setOpenTheme(false); }}
               aria-label="Language"
-              className="h-10 px-3 rounded-xl glass flex items-center gap-2 text-sm hover:scale-105 transition"
+              className="h-9 sm:h-10 px-2.5 sm:px-3 rounded-xl glass flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm hover:scale-105 transition"
             >
               <Languages className="h-4 w-4" />
               <span className="uppercase">{lang}</span>
@@ -84,7 +84,7 @@ export function Navbar() {
           <Link
             to="/admin"
             aria-label={t.nav_admin}
-            className="h-10 px-2 sm:px-3 rounded-xl glass flex items-center gap-2 text-sm hover:scale-105 transition"
+            className="h-9 sm:h-10 px-2.5 sm:px-3 rounded-xl glass flex items-center gap-2 text-xs sm:text-sm hover:scale-105 transition"
           >
             <Shield className="h-4 w-4" />
             <span className="hidden sm:inline">{t.nav_admin}</span>
