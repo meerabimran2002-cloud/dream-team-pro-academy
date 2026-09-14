@@ -73,6 +73,12 @@ export function RegistrationForm() {
       <div className="mx-auto max-w-4xl relative">
         <SectionHead kicker="Register" title={t.register_title} body={t.register_sub} />
         <form onSubmit={onSubmit} className="mt-12 glass rounded-3xl p-6 sm:p-10 grid sm:grid-cols-2 gap-5">
+          <Field label={t.course_label} required full>
+            <select name="course" className={FIELD} required defaultValue="prompt_engineering">
+              <option value="prompt_engineering">Prompt Engineering — Batch 3 (Open)</option>
+              <option value="ai_cartoon_creation">AI Cartoon Creation — New Course (Open)</option>
+            </select>
+          </Field>
           <Field label="Full Name" required><input name="full_name" className={FIELD} placeholder="Your full name" required /></Field>
           <Field label="Father's Name" required><input name="father_name" className={FIELD} placeholder="Father's name" required /></Field>
           <Field label="Gender" required>
