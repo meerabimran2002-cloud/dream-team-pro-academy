@@ -33,6 +33,7 @@ export function RegistrationForm() {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const raw = {
+      course: String(fd.get("course") || ""),
       full_name: String(fd.get("full_name") || ""),
       father_name: String(fd.get("father_name") || ""),
       gender: String(fd.get("gender") || ""),
@@ -54,7 +55,9 @@ export function RegistrationForm() {
     setLoading(true);
     const { terms, ...row } = parsed.data;
     void terms;
-    const { error } = await supabase.from("registrations").insert({ ...row, batch: 2 });
+    const { error } = await supabase
+      .from("registrations")
+      .insert({ ...row, batch: row.course === "prompt_engineering" ? 3 : 1 });
     setLoading(false);
     if (error) {
       toast.error(error.message);
