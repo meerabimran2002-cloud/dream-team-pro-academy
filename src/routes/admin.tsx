@@ -315,8 +315,26 @@ function Dashboard() {
 
         {tab === "registrations" ? (
           <div className="mt-4 glass rounded-2xl p-4 sm:p-6">
+            <div className="mb-3 flex flex-wrap items-center gap-2">
+              {COURSES.map(c => (
+                <button
+                  key={c.id}
+                  type="button"
+                  onClick={() => {
+                    setCourseTab(c.id);
+                    setBatchTab(c.batches[c.batches.length - 1]);
+                  }}
+                  className={`px-4 py-2 rounded-xl text-sm font-medium transition flex items-center gap-2 ${courseTab === c.id ? "btn-3d" : "glass hover:scale-105"}`}
+                >
+                  <span>{c.label}</span>
+                  <span className={`text-xs px-2 py-0.5 rounded-full ${courseTab === c.id ? "bg-background/30" : "bg-secondary/70"}`}>
+                    {regs.filter(r => (r.course ?? "prompt_engineering") === c.id).length}
+                  </span>
+                </button>
+              ))}
+            </div>
             <div className="mb-4 flex flex-wrap items-center gap-2">
-              {([1, 2] as const).map(b => (
+              {(COURSES.find(c => c.id === courseTab)?.batches ?? [1]).map(b => (
                 <button
                   key={b}
                   type="button"
@@ -325,10 +343,10 @@ function Dashboard() {
                 >
                   <span>Batch {b}</span>
                   <span className={`text-xs px-2 py-0.5 rounded-full ${batchTab === b ? "bg-background/30" : "bg-secondary/70"}`}>
-                    {b === 1 ? batch1Count : batch2Count}
+                    {countFor(b)}
                   </span>
                   <span className="text-[10px] uppercase tracking-widest opacity-70">
-                    {b === 1 ? "Closed" : "Starts 10 Aug"}
+                    {batchStatus(courseTab, b)}
                   </span>
                 </button>
               ))}
