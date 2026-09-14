@@ -46,6 +46,7 @@ export type Database = {
           ai_experience: boolean
           batch: number
           city: string
+          course: string
           created_at: string
           date_of_birth: string
           education_level: string
@@ -62,6 +63,7 @@ export type Database = {
           ai_experience?: boolean
           batch?: number
           city: string
+          course?: string
           created_at?: string
           date_of_birth: string
           education_level: string
@@ -78,6 +80,7 @@ export type Database = {
           ai_experience?: boolean
           batch?: number
           city?: string
+          course?: string
           created_at?: string
           date_of_birth?: string
           education_level?: string
