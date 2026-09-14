@@ -7,6 +7,7 @@ import { useT } from "@/lib/i18n";
 import { SectionHead } from "./Curriculum";
 
 const schema = z.object({
+  course: z.enum(["prompt_engineering", "ai_cartoon_creation"]),
   full_name: z.string().trim().min(2).max(100),
   father_name: z.string().trim().min(2).max(100),
   gender: z.enum(["male", "female", "other"]),
