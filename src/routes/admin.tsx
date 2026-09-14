@@ -210,7 +210,7 @@ function Dashboard() {
   function exportCSV() {
     const rows = filteredRegs;
     if (!rows.length) return toast.error("Nothing to export");
-    const headers = ["Full Name","Father","Gender","DOB","Email","Phone","City","Education","Profession","AI Experience","Motivation","Submitted"];
+    const headers = ["Course","Batch","Full Name","Father","Gender","DOB","Email","Phone","City","Education","Profession","AI Experience","Motivation","Submitted"];
     const escape = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
     const csv = [headers.join(",")]
       .concat(rows.map(r => [r.full_name, r.father_name, r.gender, r.date_of_birth, r.email, r.phone, r.city, r.education_level, r.profession, r.ai_experience ? "Yes" : "No", r.motivation, r.created_at].map(escape).join(",")))
