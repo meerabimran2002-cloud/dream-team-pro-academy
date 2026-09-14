@@ -157,7 +157,8 @@ function AuthPanel() {
 
 function Dashboard() {
   const [tab, setTab] = useState<"registrations" | "feedback">("registrations");
-  const [batchTab, setBatchTab] = useState<1 | 2>(2);
+  const [courseTab, setCourseTab] = useState<string>("prompt_engineering");
+  const [batchTab, setBatchTab] = useState<number>(3);
   const [regs, setRegs] = useState<Registration[]>([]);
   const [fbs, setFbs] = useState<FeedbackRow[]>([]);
   const [q, setQ] = useState("");
@@ -181,9 +182,12 @@ function Dashboard() {
     setLoading(false);
   }
 
-  const batchRegs = useMemo(() => regs.filter(r => (r.batch ?? 2) === batchTab), [regs, batchTab]);
-  const batch1Count = useMemo(() => regs.filter(r => (r.batch ?? 2) === 1).length, [regs]);
-  const batch2Count = useMemo(() => regs.filter(r => (r.batch ?? 2) === 2).length, [regs]);
+  const courseRegs = useMemo(
+    () => regs.filter(r => (r.course ?? "prompt_engineering") === courseTab),
+    [regs, courseTab],
+  );
+  const batchRegs = useMemo(() => courseRegs.filter(r => (r.batch ?? 1) === batchTab), [courseRegs, batchTab]);
+  const countFor = (b: number) => courseRegs.filter(r => (r.batch ?? 1) === b).length;
 
   const filteredRegs = useMemo(() => {
     const qq = q.trim().toLowerCase();
