@@ -17,10 +17,10 @@ import { ScrollTop } from "@/components/ScrollTop";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dream Team — Prompt Engineering Course | Premium AI Academy" },
-      { name: "description", content: "Master Prompt Engineering with Dream Team Academy. Live online classes, certificate, beginner-to-advanced. Starts 10 July." },
-      { property: "og:title", content: "Dream Team — Prompt Engineering Course" },
-      { property: "og:description", content: "Premium AI academy. Live classes. Certificate. Starts 10 July." },
+      { title: "Dream Team Academy — Prompt Engineering & AI Cartoon Creation" },
+      { name: "description", content: "Join Dream Team Academy: Prompt Engineering Batch 3 and the new AI Cartoon Creation course. Live online classes with certificate." },
+      { property: "og:title", content: "Dream Team Academy — AI Courses" },
+      { property: "og:description", content: "Prompt Engineering Batch 3 and AI Cartoon Creation. Live classes. Certificate." },
       { property: "og:type", content: "website" },
     ],
   }),

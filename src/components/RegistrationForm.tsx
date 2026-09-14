@@ -7,6 +7,7 @@ import { useT } from "@/lib/i18n";
 import { SectionHead } from "./Curriculum";
 
 const schema = z.object({
+  course: z.enum(["prompt_engineering", "ai_cartoon_creation"]),
   full_name: z.string().trim().min(2).max(100),
   father_name: z.string().trim().min(2).max(100),
   gender: z.enum(["male", "female", "other"]),
@@ -32,6 +33,7 @@ export function RegistrationForm() {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const raw = {
+      course: String(fd.get("course") || ""),
       full_name: String(fd.get("full_name") || ""),
       father_name: String(fd.get("father_name") || ""),
       gender: String(fd.get("gender") || ""),
@@ -53,7 +55,9 @@ export function RegistrationForm() {
     setLoading(true);
     const { terms, ...row } = parsed.data;
     void terms;
-    const { error } = await supabase.from("registrations").insert({ ...row, batch: 2 });
+    const { error } = await supabase
+      .from("registrations")
+      .insert({ ...row, batch: row.course === "prompt_engineering" ? 3 : 1 });
     setLoading(false);
     if (error) {
       toast.error(error.message);
@@ -69,6 +73,12 @@ export function RegistrationForm() {
       <div className="mx-auto max-w-4xl relative">
         <SectionHead kicker="Register" title={t.register_title} body={t.register_sub} />
         <form onSubmit={onSubmit} className="mt-12 glass rounded-3xl p-6 sm:p-10 grid sm:grid-cols-2 gap-5">
+          <Field label={t.course_label} required full>
+            <select name="course" className={FIELD} required defaultValue="prompt_engineering">
+              <option value="prompt_engineering">Prompt Engineering — Batch 3 (Open)</option>
+              <option value="ai_cartoon_creation">AI Cartoon Creation — New Course (Open)</option>
+            </select>
+          </Field>
           <Field label="Full Name" required><input name="full_name" className={FIELD} placeholder="Your full name" required /></Field>
           <Field label="Father's Name" required><input name="father_name" className={FIELD} placeholder="Father's name" required /></Field>
           <Field label="Gender" required>

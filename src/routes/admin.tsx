@@ -30,7 +30,16 @@ type Registration = {
   motivation: string;
   created_at: string;
   batch: number;
+  course: string;
 };
+
+const COURSES = [
+  { id: "prompt_engineering", label: "Prompt Engineering", batches: [1, 2, 3] as number[] },
+  { id: "ai_cartoon_creation", label: "AI Cartoon Creation", batches: [1] as number[] },
+];
+
+const batchStatus = (course: string, b: number) =>
+  course === "ai_cartoon_creation" ? "Open" : b === 3 ? "Open" : "Closed";
 
 type FeedbackRow = {
   id: string;
@@ -148,7 +157,8 @@ function AuthPanel() {
 
 function Dashboard() {
   const [tab, setTab] = useState<"registrations" | "feedback">("registrations");
-  const [batchTab, setBatchTab] = useState<1 | 2>(2);
+  const [courseTab, setCourseTab] = useState<string>("prompt_engineering");
+  const [batchTab, setBatchTab] = useState<number>(3);
   const [regs, setRegs] = useState<Registration[]>([]);
   const [fbs, setFbs] = useState<FeedbackRow[]>([]);
   const [q, setQ] = useState("");
@@ -172,9 +182,12 @@ function Dashboard() {
     setLoading(false);
   }
 
-  const batchRegs = useMemo(() => regs.filter(r => (r.batch ?? 2) === batchTab), [regs, batchTab]);
-  const batch1Count = useMemo(() => regs.filter(r => (r.batch ?? 2) === 1).length, [regs]);
-  const batch2Count = useMemo(() => regs.filter(r => (r.batch ?? 2) === 2).length, [regs]);
+  const courseRegs = useMemo(
+    () => regs.filter(r => (r.course ?? "prompt_engineering") === courseTab),
+    [regs, courseTab],
+  );
+  const batchRegs = useMemo(() => courseRegs.filter(r => (r.batch ?? 1) === batchTab), [courseRegs, batchTab]);
+  const countFor = (b: number) => courseRegs.filter(r => (r.batch ?? 1) === b).length;
 
   const filteredRegs = useMemo(() => {
     const qq = q.trim().toLowerCase();
@@ -197,10 +210,10 @@ function Dashboard() {
   function exportCSV() {
     const rows = filteredRegs;
     if (!rows.length) return toast.error("Nothing to export");
-    const headers = ["Full Name","Father","Gender","DOB","Email","Phone","City","Education","Profession","AI Experience","Motivation","Submitted"];
+    const headers = ["Course","Batch","Full Name","Father","Gender","DOB","Email","Phone","City","Education","Profession","AI Experience","Motivation","Submitted"];
     const escape = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
     const csv = [headers.join(",")]
-      .concat(rows.map(r => [r.full_name, r.father_name, r.gender, r.date_of_birth, r.email, r.phone, r.city, r.education_level, r.profession, r.ai_experience ? "Yes" : "No", r.motivation, r.created_at].map(escape).join(",")))
+      .concat(rows.map(r => [COURSES.find(c => c.id === (r.course ?? "prompt_engineering"))?.label ?? r.course, r.batch, r.full_name, r.father_name, r.gender, r.date_of_birth, r.email, r.phone, r.city, r.education_level, r.profession, r.ai_experience ? "Yes" : "No", r.motivation, r.created_at].map(escape).join(",")))
       .join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
@@ -302,8 +315,26 @@ function Dashboard() {
 
         {tab === "registrations" ? (
           <div className="mt-4 glass rounded-2xl p-4 sm:p-6">
+            <div className="mb-3 flex flex-wrap items-center gap-2">
+              {COURSES.map(c => (
+                <button
+                  key={c.id}
+                  type="button"
+                  onClick={() => {
+                    setCourseTab(c.id);
+                    setBatchTab(c.batches[c.batches.length - 1]);
+                  }}
+                  className={`px-4 py-2 rounded-xl text-sm font-medium transition flex items-center gap-2 ${courseTab === c.id ? "btn-3d" : "glass hover:scale-105"}`}
+                >
+                  <span>{c.label}</span>
+                  <span className={`text-xs px-2 py-0.5 rounded-full ${courseTab === c.id ? "bg-background/30" : "bg-secondary/70"}`}>
+                    {regs.filter(r => (r.course ?? "prompt_engineering") === c.id).length}
+                  </span>
+                </button>
+              ))}
+            </div>
             <div className="mb-4 flex flex-wrap items-center gap-2">
-              {([1, 2] as const).map(b => (
+              {(COURSES.find(c => c.id === courseTab)?.batches ?? [1]).map(b => (
                 <button
                   key={b}
                   type="button"
@@ -312,10 +343,10 @@ function Dashboard() {
                 >
                   <span>Batch {b}</span>
                   <span className={`text-xs px-2 py-0.5 rounded-full ${batchTab === b ? "bg-background/30" : "bg-secondary/70"}`}>
-                    {b === 1 ? batch1Count : batch2Count}
+                    {countFor(b)}
                   </span>
                   <span className="text-[10px] uppercase tracking-widest opacity-70">
-                    {b === 1 ? "Closed" : "Starts 10 Aug"}
+                    {batchStatus(courseTab, b)}
                   </span>
                 </button>
               ))}
