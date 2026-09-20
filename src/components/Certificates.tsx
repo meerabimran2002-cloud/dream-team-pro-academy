@@ -10,7 +10,6 @@ import c6 from "@/assets/certificates/IMG-20260921-WA0011.jpg.asset.json";
 import c7 from "@/assets/certificates/IMG-20260921-WA0007.jpg.asset.json";
 import c8 from "@/assets/certificates/IMG-20260921-WA0003.jpg.asset.json";
 import c9 from "@/assets/certificates/IMG-20260921-WA0009.jpg.asset.json";
-import c10 from "@/assets/certificates/IMG-20260921-WA0001.jpg.asset.json";
 import c11 from "@/assets/certificates/IMG-20260921-WA0005.jpg.asset.json";
 import c13 from "@/assets/certificates/IMG-20260921-WA0000.jpg.asset.json";
 
@@ -24,7 +23,6 @@ const CERTS = [
   { name: "Dil Awaiz", id: "DTA-2026-R7", src: c7.url },
   { name: "Ghazia Malik hussain", id: "DTA-2026-R8", src: c8.url },
   { name: "Zoona Aslam", id: "DTA-2026-R9", src: c9.url },
-  { name: "Fahat Ali", id: "DTA-2026-R10", src: c10.url },
   { name: "Eman Ali", id: "DTA-2026-R11", src: c11.url },
   { name: "Rida Jabeen", id: "DTA-2026-R13", src: c13.url },
 ];
