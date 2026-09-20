@@ -56,13 +56,16 @@ export function Certificates() {
                   <p className="text-sm font-semibold truncate">{c.name}</p>
                   <p className="text-[11px] text-muted-foreground truncate">{c.id}</p>
                 </div>
-                <button
-                  onClick={() => downloadCert(c.src, c.name, c.id)}
+                <a
+                  href={c.src}
+                  download={fileName(c.name, c.id)}
+                  target="_blank"
+                  rel="noreferrer"
                   aria-label={`Download certificate of ${c.name}`}
                   className="shrink-0 rounded-lg border border-border px-2.5 py-1.5 text-xs font-medium flex items-center gap-1 hover:border-primary hover:text-primary transition"
                 >
                   <Download className="h-3.5 w-3.5" /> Download
-                </button>
+                </a>
               </div>
             </div>
           ))}
