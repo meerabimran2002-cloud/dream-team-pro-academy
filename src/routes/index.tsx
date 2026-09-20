@@ -11,6 +11,7 @@ import { Journey } from "@/components/Journey";
 import { FAQ } from "@/components/FAQ";
 import { RegistrationForm } from "@/components/RegistrationForm";
 import { Feedback } from "@/components/Feedback";
+import { Certificates } from "@/components/Certificates";
 import { Contact, Footer } from "@/components/Contact";
 import { ScrollTop } from "@/components/ScrollTop";
 
@@ -40,6 +41,7 @@ function IndexPage() {
         <Founder />
         <Curriculum />
         <Journey />
+        <Certificates />
         <FAQ />
         <RegistrationForm />
         <Feedback />
