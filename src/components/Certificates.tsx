@@ -90,12 +90,15 @@ export function Certificates() {
               alt={`Certificate of ${CERTS[open].name}`}
               className="max-h-[78vh] max-w-full rounded-xl shadow-2xl"
             />
-            <button
-              onClick={() => downloadCert(CERTS[open].src, CERTS[open].name, CERTS[open].id)}
+            <a
+              href={CERTS[open].src}
+              download={fileName(CERTS[open].name, CERTS[open].id)}
+              target="_blank"
+              rel="noreferrer"
               className="btn-3d btn-3d-hover px-5 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2"
             >
               <Download className="h-4 w-4" /> Download Certificate
-            </button>
+            </a>
           </div>
         </div>
       )}
