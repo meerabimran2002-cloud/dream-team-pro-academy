@@ -23,7 +23,6 @@ const CERTS = [
   { name: "Dil Awaiz", id: "DTA-2026-R7", src: c7.url },
   { name: "Ghazia Malik hussain", id: "DTA-2026-R8", src: c8.url },
   { name: "Zoona Aslam", id: "DTA-2026-R9", src: c9.url },
-  { name: "Fahat Ali", id: "DTA-2026-R10", src: c10.url },
   { name: "Eman Ali", id: "DTA-2026-R11", src: c11.url },
   { name: "Rida Jabeen", id: "DTA-2026-R13", src: c13.url },
 ];
