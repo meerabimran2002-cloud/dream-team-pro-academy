@@ -27,22 +27,7 @@ const CERTS = [
   { name: "Rida Jabeen", id: "DTA-2026-R13", src: c13.url },
 ];
 
-async function downloadCert(url: string, name: string, id: string) {
-  try {
-    const res = await fetch(url);
-    const blob = await res.blob();
-    const href = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = href;
-    a.download = `${name.replace(/\s+/g, "-")}-${id}.jpg`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(href);
-  } catch {
-    window.open(url, "_blank");
-  }
-}
+const fileName = (name: string, id: string) => `${name.replace(/\s+/g, "-")}-${id}.jpg`;
 
 export function Certificates() {
   const [open, setOpen] = useState<number | null>(null);
