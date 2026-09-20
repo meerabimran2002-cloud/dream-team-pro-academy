@@ -27,22 +27,7 @@ const CERTS = [
   { name: "Rida Jabeen", id: "DTA-2026-R13", src: c13.url },
 ];
 
-async function downloadCert(url: string, name: string, id: string) {
-  try {
-    const res = await fetch(url);
-    const blob = await res.blob();
-    const href = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = href;
-    a.download = `${name.replace(/\s+/g, "-")}-${id}.jpg`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(href);
-  } catch {
-    window.open(url, "_blank");
-  }
-}
+const fileName = (name: string, id: string) => `${name.replace(/\s+/g, "-")}-${id}.jpg`;
 
 export function Certificates() {
   const [open, setOpen] = useState<number | null>(null);
@@ -71,13 +56,16 @@ export function Certificates() {
                   <p className="text-sm font-semibold truncate">{c.name}</p>
                   <p className="text-[11px] text-muted-foreground truncate">{c.id}</p>
                 </div>
-                <button
-                  onClick={() => downloadCert(c.src, c.name, c.id)}
+                <a
+                  href={c.src}
+                  download={fileName(c.name, c.id)}
+                  target="_blank"
+                  rel="noreferrer"
                   aria-label={`Download certificate of ${c.name}`}
                   className="shrink-0 rounded-lg border border-border px-2.5 py-1.5 text-xs font-medium flex items-center gap-1 hover:border-primary hover:text-primary transition"
                 >
                   <Download className="h-3.5 w-3.5" /> Download
-                </button>
+                </a>
               </div>
             </div>
           ))}
@@ -102,12 +90,15 @@ export function Certificates() {
               alt={`Certificate of ${CERTS[open].name}`}
               className="max-h-[78vh] max-w-full rounded-xl shadow-2xl"
             />
-            <button
-              onClick={() => downloadCert(CERTS[open].src, CERTS[open].name, CERTS[open].id)}
+            <a
+              href={CERTS[open].src}
+              download={fileName(CERTS[open].name, CERTS[open].id)}
+              target="_blank"
+              rel="noreferrer"
               className="btn-3d btn-3d-hover px-5 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2"
             >
               <Download className="h-4 w-4" /> Download Certificate
-            </button>
+            </a>
           </div>
         </div>
       )}
