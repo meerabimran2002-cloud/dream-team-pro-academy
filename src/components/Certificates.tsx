@@ -10,7 +10,6 @@ import c6 from "@/assets/certificates/IMG-20260921-WA0011.jpg.asset.json";
 import c7 from "@/assets/certificates/IMG-20260921-WA0007.jpg.asset.json";
 import c8 from "@/assets/certificates/IMG-20260921-WA0003.jpg.asset.json";
 import c9 from "@/assets/certificates/IMG-20260921-WA0009.jpg.asset.json";
-import c10 from "@/assets/certificates/IMG-20260921-WA0001.jpg.asset.json";
 import c11 from "@/assets/certificates/IMG-20260921-WA0005.jpg.asset.json";
 import c13 from "@/assets/certificates/IMG-20260921-WA0000.jpg.asset.json";
 
