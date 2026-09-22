@@ -1,13 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import { Palette, Languages, Shield } from "lucide-react";
+import { Award, Languages, Shield } from "lucide-react";
 import { useState } from "react";
-import { useTheme, THEMES, type ThemeName, type Lang } from "@/lib/theme-context";
+import { useTheme, type Lang } from "@/lib/theme-context";
 import { useT } from "@/lib/i18n";
 
 export function Navbar() {
-  const { theme, setTheme, lang, setLang } = useTheme();
+  const { lang, setLang } = useTheme();
   const t = useT();
-  const [openTheme, setOpenTheme] = useState(false);
   const [openLang, setOpenLang] = useState(false);
 
   return (
@@ -15,8 +14,7 @@ export function Navbar() {
       <div className="mx-auto max-w-7xl glass rounded-2xl px-3 sm:px-6 py-2.5 sm:py-3 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 md:flex md:justify-between">
         <Link to="/" className="flex min-w-0 items-center">
           <div className="leading-tight min-w-0">
-            <div className="font-display font-bold text-base sm:text-lg gradient-text truncate">Dream Team</div>
-            <div className="text-[9px] sm:text-[10px] uppercase tracking-widest text-muted-foreground truncate">AI Academy</div>
+            <div className="font-display font-bold text-base sm:text-lg text-primary truncate">Dream Team Academy</div>
           </div>
         </Link>
 
@@ -25,6 +23,7 @@ export function Navbar() {
           <a href="#about" className="hover:text-foreground transition">{t.nav_about}</a>
           <a href="#curriculum" className="hover:text-foreground transition">{t.nav_curriculum}</a>
           <a href="#faq" className="hover:text-foreground transition">{t.nav_faq}</a>
+          <Link to="/certificates" className="hover:text-foreground transition">Certificates</Link>
           <a href="#register" className="hover:text-foreground transition">{t.nav_register}</a>
         </nav>
 
@@ -32,33 +31,7 @@ export function Navbar() {
           <div className="relative">
             <button
               type="button"
-              onClick={() => { setOpenTheme(v => !v); setOpenLang(false); }}
-              aria-label="Theme"
-              className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl glass grid place-items-center hover:scale-105 transition"
-            >
-              <Palette className="h-4 w-4" />
-            </button>
-            {openTheme && (
-              <div className="absolute right-0 mt-2 glass-strong rounded-xl p-2 min-w-[180px] animate-fade-up">
-                {THEMES.map(th => (
-                  <button
-                    type="button"
-                    key={th.id}
-                    onClick={() => { setTheme(th.id as ThemeName); setOpenTheme(false); }}
-                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-secondary/60 transition ${theme === th.id ? "bg-secondary/60" : ""}`}
-                  >
-                    <span className="h-5 w-5 rounded-full ring-1 ring-white/20" style={{ background: th.swatch }} />
-                    <span>{th.label}</span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() => { setOpenLang(v => !v); setOpenTheme(false); }}
+              onClick={() => setOpenLang(v => !v)}
               aria-label="Language"
               className="h-9 sm:h-10 px-2.5 sm:px-3 rounded-xl glass flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm hover:scale-105 transition"
             >
@@ -80,6 +53,14 @@ export function Navbar() {
               </div>
             )}
           </div>
+
+          <Link
+            to="/certificates"
+            aria-label="Batch 1 certificates"
+            className="md:hidden h-9 w-9 sm:h-10 sm:w-10 rounded-xl glass grid place-items-center hover:scale-105 transition"
+          >
+            <Award className="h-4 w-4" />
+          </Link>
 
           <Link
             to="/admin"

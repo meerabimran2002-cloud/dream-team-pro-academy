@@ -29,19 +29,19 @@ const CERTS = [
 
 const fileName = (name: string, id: string) => `${name.replace(/\s+/g, "-")}-${id}.jpg`;
 
-export function Certificates() {
+export function Certificates({ hideHeading = false }: { hideHeading?: boolean }) {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
     <section id="certificates" className="px-4 py-20 relative">
       <div className="mx-auto max-w-6xl relative">
-        <SectionHead
+        {!hideHeading && <SectionHead
           kicker="Batch 1 — Prompt Engineering"
           title="Certified Students"
           body="Congratulations to our Batch 1 graduates. Tap any certificate to view it, or download it as an image."
-        />
+        />}
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className={`${hideHeading ? "mt-8" : "mt-12"} grid gap-5 sm:grid-cols-2 lg:grid-cols-3`}>
           {CERTS.map((c, i) => (
             <div key={c.id} className="glass rounded-2xl p-3 transition hover:-translate-y-1 hover:shadow-xl">
               <button

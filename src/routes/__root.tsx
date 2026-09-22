@@ -85,8 +85,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: "Dream Team — Premium AI Academy" },
       { property: "og:description", content: "Premium AI Academy. Learn Prompt Engineering live with Dream Team." },
       { name: "twitter:description", content: "Premium AI Academy. Learn Prompt Engineering live with Dream Team." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b5477c94-2b67-4a6d-a6d6-3c22aa8dcc6f/id-preview-d5831168--95d81928-529d-4443-b010-50411297a346.lovable.app-1780597071628.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b5477c94-2b67-4a6d-a6d6-3c22aa8dcc6f/id-preview-d5831168--95d81928-529d-4443-b010-50411297a346.lovable.app-1780597071628.png" },
       { property: "og:type", content: "website" },
     ],
     links: [
@@ -109,7 +107,7 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem('dt-theme')||'snow';document.documentElement.setAttribute('data-theme',t);var l=localStorage.getItem('dt-lang');if(l){document.documentElement.setAttribute('lang',l);document.documentElement.setAttribute('dir',l==='ur'?'rtl':'ltr')}}catch(e){document.documentElement.setAttribute('data-theme','snow')}`,
+            __html: `document.documentElement.setAttribute('data-theme','academy');try{var l=localStorage.getItem('dt-lang');if(l){document.documentElement.setAttribute('lang',l);document.documentElement.setAttribute('dir',l==='ur'?'rtl':'ltr')}}catch(e){}`,
           }}
         />
       </head>

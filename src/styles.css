@@ -39,30 +39,30 @@
   --animate-fade-up: fade-up 0.7s ease-out;
 }
 
-/* Default: Dark Purple */
+/* Permanent academy theme: cream light with deep ocean accents */
 :root,
-[data-theme="purple"] {
+[data-theme="academy"] {
   --radius: 0.875rem;
-  --background: oklch(0.14 0.03 290);
-  --foreground: oklch(0.97 0.01 290);
-  --card: oklch(0.18 0.04 290 / 0.6);
-  --card-foreground: oklch(0.97 0.01 290);
-  --popover: oklch(0.18 0.04 290);
-  --popover-foreground: oklch(0.97 0.01 290);
-  --primary: oklch(0.7 0.22 300);
-  --primary-foreground: oklch(0.12 0.02 290);
-  --primary-glow: oklch(0.78 0.2 310);
-  --secondary: oklch(0.25 0.06 290);
-  --secondary-foreground: oklch(0.97 0.01 290);
-  --muted: oklch(0.22 0.04 290);
-  --muted-foreground: oklch(0.72 0.04 290);
-  --accent: oklch(0.65 0.25 320);
-  --accent-foreground: oklch(0.97 0.01 290);
+  --background: oklch(0.975 0.018 88);
+  --foreground: oklch(0.25 0.055 244);
+  --card: oklch(0.995 0.008 88 / 0.88);
+  --card-foreground: oklch(0.25 0.055 244);
+  --popover: oklch(0.995 0.008 88);
+  --popover-foreground: oklch(0.25 0.055 244);
+  --primary: oklch(0.42 0.13 244);
+  --primary-foreground: oklch(0.99 0.005 90);
+  --primary-glow: oklch(0.58 0.13 225);
+  --secondary: oklch(0.93 0.027 88);
+  --secondary-foreground: oklch(0.27 0.06 244);
+  --muted: oklch(0.94 0.018 88);
+  --muted-foreground: oklch(0.48 0.045 244);
+  --accent: oklch(0.68 0.13 72);
+  --accent-foreground: oklch(0.2 0.05 244);
   --destructive: oklch(0.65 0.24 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.97 0.01 290 / 0.1);
-  --input: oklch(0.97 0.01 290 / 0.08);
-  --ring: oklch(0.7 0.22 300);
+  --border: oklch(0.42 0.07 244 / 0.16);
+  --input: oklch(0.42 0.07 244 / 0.07);
+  --ring: oklch(0.42 0.13 244);
 }
 
 [data-theme="blue"] {
@@ -255,7 +255,7 @@
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
 }
 
@@ -265,7 +265,7 @@
   border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
   box-shadow:
     0 1px 0 0 color-mix(in oklab, var(--foreground) 6%, transparent) inset,
-    0 20px 60px -20px color-mix(in oklab, var(--primary) 25%, transparent);
+    0 18px 45px -28px color-mix(in oklab, var(--primary) 24%, transparent);
 }
 
 @utility glass-strong {
@@ -275,12 +275,10 @@
 }
 
 @utility gradient-text {
-  background: linear-gradient(135deg, var(--primary), var(--accent), var(--primary-glow));
-  background-size: 200% 200%;
+  background: linear-gradient(110deg, var(--primary), var(--primary-glow));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: shimmer 8s linear infinite;
 }
 
 @utility btn-3d {
@@ -290,8 +288,7 @@
   box-shadow:
     0 1px 0 0 color-mix(in oklab, white 30%, transparent) inset,
     0 -2px 0 0 color-mix(in oklab, black 25%, transparent) inset,
-    0 10px 30px -8px color-mix(in oklab, var(--primary) 60%, transparent),
-    0 4px 12px -4px color-mix(in oklab, var(--primary) 40%, transparent);
+    0 10px 24px -12px color-mix(in oklab, var(--primary) 55%, transparent);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 @utility btn-3d-hover {
@@ -300,8 +297,7 @@
     box-shadow:
       0 1px 0 0 color-mix(in oklab, white 30%, transparent) inset,
       0 -2px 0 0 color-mix(in oklab, black 25%, transparent) inset,
-      0 16px 40px -8px color-mix(in oklab, var(--primary) 70%, transparent),
-      0 6px 16px -4px color-mix(in oklab, var(--primary) 50%, transparent);
+      0 14px 30px -12px color-mix(in oklab, var(--primary) 60%, transparent);
   }
   &:active {
     transform: translateY(0);
@@ -324,5 +320,36 @@
 }
 @utility pulse-ring {
   animation: pulse-ring 2s ease-out infinite;
+}
+
+@keyframes review-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@utility review-marquee {
+  overflow: hidden;
+  padding-block: 0.5rem;
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+@utility review-track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  animation: review-scroll 32s linear infinite;
+
+  &:hover { animation-play-state: paused; }
+}
+
+@utility review-card {
+  width: min(20rem, calc(100vw - 3rem));
+  flex: none;
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review-track { animation: none; }
 }
 

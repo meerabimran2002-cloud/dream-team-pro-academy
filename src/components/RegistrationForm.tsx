@@ -69,10 +69,9 @@ export function RegistrationForm() {
 
   return (
     <section id="register" className="px-4 py-20 relative">
-      <div className="glow-orb h-80 w-80 -top-20 left-1/2 -translate-x-1/2" style={{ background: "var(--primary)" }} />
       <div className="mx-auto max-w-4xl relative">
         <SectionHead kicker="Register" title={t.register_title} body={t.register_sub} />
-        <form onSubmit={onSubmit} className="mt-12 glass rounded-3xl p-6 sm:p-10 grid sm:grid-cols-2 gap-5">
+        <form onSubmit={onSubmit} className="mt-12 glass rounded-2xl p-6 sm:p-10 grid sm:grid-cols-2 gap-5">
           <Field label={t.course_label} required full>
             <select name="course" className={FIELD} required defaultValue="prompt_engineering">
               <option value="prompt_engineering">Prompt Engineering — Batch 3 (Open)</option>
