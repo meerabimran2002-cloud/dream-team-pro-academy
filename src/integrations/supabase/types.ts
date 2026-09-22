@@ -19,6 +19,7 @@ export type Database = {
           created_at: string
           email: string | null
           id: string
+          is_approved: boolean
           message: string
           name: string
           rating: number
@@ -27,6 +28,7 @@ export type Database = {
           created_at?: string
           email?: string | null
           id?: string
+          is_approved?: boolean
           message: string
           name: string
           rating: number
@@ -35,6 +37,7 @@ export type Database = {
           created_at?: string
           email?: string | null
           id?: string
+          is_approved?: boolean
           message?: string
           name?: string
           rating?: number
