@@ -15,7 +15,7 @@ export function Contact() {
           >
             <Sparkles className="h-8 w-8 text-primary" />
             <h3 className="mt-4 text-xl font-semibold">Enroll Today</h3>
-            <p className="mt-2 text-sm text-muted-foreground">Reserve your seat for the Prompt Engineering cohort starting 10 July.</p>
+            <p className="mt-2 text-sm text-muted-foreground">Reserve your seat for Prompt Engineering Batch 3 or AI Cartoon Creation.</p>
             <div className="mt-4 text-sm text-primary group-hover:underline">Go to registration →</div>
           </a>
           <a
@@ -36,7 +36,7 @@ export function Contact() {
 export function Footer() {
   return (
     <footer className="px-4 pt-10 pb-8">
-      <div className="mx-auto max-w-7xl glass rounded-3xl p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="mx-auto max-w-7xl glass rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="h-9 w-9 rounded-xl btn-3d grid place-items-center">
             <Mail className="h-4 w-4" />

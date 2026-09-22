@@ -1,14 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { Toaster, toast } from "sonner";
-import { Loader2, LogOut, Search, Download, Users, Star, Mail, Shield, Trash2, ArrowLeft, Sparkles, TrendingUp } from "lucide-react";
+import { Check, EyeOff, Loader2, LogOut, Search, Download, Users, Star, Mail, Shield, Trash2, ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
       { title: "Admin Portal · Dream Team" },
+      { name: "description", content: "Secure Dream Team Academy registration and feedback management portal." },
+      { property: "og:title", content: "Admin Portal · Dream Team Academy" },
+      { property: "og:description", content: "Secure Dream Team Academy registration and feedback management portal." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex,nofollow" },
     ],
   }),
@@ -29,6 +33,7 @@ type Registration = {
   ai_experience: boolean;
   motivation: string;
   created_at: string;
+  is_approved: boolean;
   batch: number;
   course: string;
 };
@@ -105,7 +110,6 @@ function AuthPanel() {
       <Link to="/" className="absolute top-6 left-6 glass rounded-xl px-3 py-2 text-sm flex items-center gap-2 hover:scale-105 transition">
         <ArrowLeft className="h-4 w-4" /> Back to site
       </Link>
-      <div className="absolute top-6 right-6"><ThemeSwitcher /></div>
       <div className="w-full max-w-md glass-strong rounded-3xl p-8 sm:p-10 relative">
         <div className="flex flex-col items-center text-center">
           <div className="h-14 w-14 rounded-2xl btn-3d grid place-items-center">
@@ -239,6 +243,13 @@ function Dashboard() {
     setFbs(fs => fs.filter(f => f.id !== id));
   }
 
+  async function setFeedbackApproval(id: string, isApproved: boolean) {
+    const { error } = await supabase.from("feedback").update({ is_approved: isApproved }).eq("id", id);
+    if (error) return toast.error(error.message);
+    setFbs(items => items.map(item => item.id === id ? { ...item, is_approved: isApproved } : item));
+    toast.success(isApproved ? "Feedback is now visible on the website" : "Feedback hidden from the website");
+  }
+
   return (
     <div className="min-h-screen px-4 py-6 sm:py-10">
       <div className="mx-auto max-w-7xl">
@@ -251,7 +262,6 @@ function Dashboard() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <ThemeSwitcher />
             <Link to="/" className="glass rounded-xl px-3 py-2 text-sm hover:scale-105 transition">View Site</Link>
             <button
               type="button"
@@ -267,37 +277,6 @@ function Dashboard() {
           <Stat icon={Users} label="Total Registrations" value={regs.length} />
           <Stat icon={Star} label="Avg Feedback Rating" value={avgRating} />
           <Stat icon={Mail} label="Feedback Messages" value={fbs.length} />
-        </div>
-
-        <div className="mt-6 grid lg:grid-cols-[1.2fr_0.8fr] gap-4">
-          <div className="glass rounded-2xl p-5 overflow-hidden relative">
-            <div className="absolute inset-0 pointer-events-none opacity-50" style={{ background: "radial-gradient(circle at 12% 20%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 34%)" }} />
-            <div className="relative flex items-center gap-3">
-              <div className="h-11 w-11 rounded-xl btn-3d grid place-items-center"><Sparkles className="h-5 w-5" /></div>
-              <div>
-                <div className="text-xs uppercase tracking-widest text-muted-foreground">Smart Admin Brief</div>
-                <div className="font-display text-xl font-bold gradient-text">{weeklyRegs} new leads this week</div>
-              </div>
-            </div>
-            <div className="relative mt-4 grid sm:grid-cols-3 gap-3 text-sm">
-              <div className="rounded-xl bg-secondary/45 p-3"><span className="text-muted-foreground">Top city</span><div className="font-semibold">{topCity}</div></div>
-              <div className="rounded-xl bg-secondary/45 p-3"><span className="text-muted-foreground">Active filter</span><div className="font-semibold">{filteredRegs.length} visible</div></div>
-              <div className="rounded-xl bg-secondary/45 p-3"><span className="text-muted-foreground">Action</span><div className="font-semibold">Export ready</div></div>
-            </div>
-          </div>
-          <div className="glass rounded-2xl p-5">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <div className="text-xs uppercase tracking-widest text-muted-foreground">Course Seat Pulse</div>
-                <div className="font-display text-xl font-bold">{Math.min(100, Math.round((regs.length / 50) * 100))}% filled</div>
-              </div>
-              <TrendingUp className="h-5 w-5 text-primary" />
-            </div>
-            <div className="mt-5 h-3 rounded-full bg-secondary overflow-hidden">
-              <div className="h-full rounded-full" style={{ width: `${Math.min(100, Math.round((regs.length / 50) * 100))}%`, background: "linear-gradient(90deg, var(--primary), var(--accent))" }} />
-            </div>
-            <div className="mt-3 text-xs text-muted-foreground">Live progress toward a 50-student cohort.</div>
-          </div>
         </div>
 
         <div className="mt-6 glass rounded-2xl p-2 inline-flex gap-1">
@@ -427,9 +406,20 @@ function Dashboard() {
                     <div className="font-semibold">{f.name}</div>
                     {f.email && <div className="text-xs text-muted-foreground">{f.email}</div>}
                   </div>
-                  <button type="button" onClick={() => delFb(f.id)} className="text-muted-foreground hover:text-destructive transition">
-                    <Trash2 className="h-4 w-4" />
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setFeedbackApproval(f.id, !f.is_approved)}
+                      aria-label={f.is_approved ? "Hide from website" : "Show on website"}
+                      title={f.is_approved ? "Hide from website" : "Show on website"}
+                      className={`rounded-lg p-2 transition ${f.is_approved ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground hover:text-primary"}`}
+                    >
+                      {f.is_approved ? <Check className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
+                    </button>
+                    <button type="button" onClick={() => delFb(f.id)} aria-label="Delete feedback" className="p-2 text-muted-foreground hover:text-destructive transition">
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  </div>
                 </div>
                 <div className="mt-2 flex items-center gap-0.5">
                   {Array.from({length: 5}).map((_, i) => (
@@ -437,6 +427,7 @@ function Dashboard() {
                   ))}
                 </div>
                 <p className="mt-3 text-sm text-foreground/90">{f.message}</p>
+                <div className="mt-3 text-xs font-medium text-primary">{f.is_approved ? "Visible on website" : "Waiting for approval"}</div>
                 <div className="mt-3 text-xs text-muted-foreground">{new Date(f.created_at).toLocaleString()}</div>
               </div>
             ))}

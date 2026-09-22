@@ -4,10 +4,7 @@ import { useT } from "@/lib/i18n";
 export function Hero() {
   const t = useT();
   return (
-    <section className="relative pt-32 pb-20 px-4 overflow-hidden">
-      <div className="glow-orb h-[420px] w-[420px] -top-32 -left-20" style={{ background: "var(--primary)" }} />
-      <div className="glow-orb h-[380px] w-[380px] top-20 -right-24" style={{ background: "var(--accent)", animationDelay: "2s" }} />
-
+    <section className="relative pt-32 pb-16 px-4 overflow-hidden">
       <div className="mx-auto max-w-6xl text-center relative">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs font-medium tracking-wider uppercase animate-fade-up">
           <Sparkles className="h-3.5 w-3.5 text-primary" />
@@ -37,7 +34,7 @@ export function Hero() {
           </a>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 max-w-4xl mx-auto">
+        <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 max-w-4xl mx-auto">
           {[
             { icon: Calendar, label: t.start_date },
             { icon: Zap, label: t.live_online },
