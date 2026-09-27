@@ -352,12 +352,12 @@
 
 @media (max-width: 639px) {
   .review-marquee {
-    overflow-x: auto;
+    overflow: visible;
     mask-image: none;
-    scroll-snap-type: x proximity;
   }
-  .review-track { animation: none; }
-  .review-card { scroll-snap-align: start; }
+  .review-track { display: grid; width: 100%; animation: none; }
+  .review-card { width: 100%; }
+  .review-card:nth-child(n+16) { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
