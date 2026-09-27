@@ -1,6 +1,6 @@
 import { Mail, MessageCircle, Sparkles } from "lucide-react";
 import { useT } from "@/lib/i18n";
-import { SectionHead } from "./Curriculum";
+import { SectionHead } from "./SectionHead";
 
 export function Contact() {
   const t = useT();

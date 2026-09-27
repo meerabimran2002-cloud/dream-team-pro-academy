@@ -4,7 +4,6 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Countdown } from "@/components/Countdown";
 import { Founder } from "@/components/Founder";
-import { Curriculum } from "@/components/Curriculum";
 import { FAQ } from "@/components/FAQ";
 import { RegistrationForm } from "@/components/RegistrationForm";
 import { Feedback } from "@/components/Feedback";
@@ -34,7 +33,6 @@ function IndexPage() {
         <Hero />
         <Countdown />
         <Founder />
-        <Curriculum />
         <FAQ />
         <RegistrationForm />
         <Feedback />

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { useT } from "@/lib/i18n";
-import { SectionHead } from "./Curriculum";
+import { SectionHead } from "./SectionHead";
 
 const faqs = [
   { q: "Do I need any prior experience?", a: "No. The course is beginner-friendly and we cover everything from zero up to advanced workflows." },

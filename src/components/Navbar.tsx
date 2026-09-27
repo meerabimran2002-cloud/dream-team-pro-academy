@@ -21,7 +21,6 @@ export function Navbar() {
 
         <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
           <a href="#about" className="hover:text-foreground transition">{t.nav_about}</a>
-          <a href="#curriculum" className="hover:text-foreground transition">{t.nav_curriculum}</a>
           <a href="#faq" className="hover:text-foreground transition">{t.nav_faq}</a>
           <Link to="/certificates" className="hover:text-foreground transition">Certificates</Link>
           <a href="#register" className="hover:text-foreground transition">{t.nav_register}</a>

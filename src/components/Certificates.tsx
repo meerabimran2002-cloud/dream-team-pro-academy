@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { X, Award, Download } from "lucide-react";
-import { SectionHead } from "./Curriculum";
+import { SectionHead } from "./SectionHead";
 import c1 from "@/assets/certificates/IMG-20260921-WA0010.jpg.asset.json";
 import c2 from "@/assets/certificates/IMG-20260921-WA0008.jpg.asset.json";
 import c3 from "@/assets/certificates/IMG-20260921-WA0006.jpg.asset.json";
@@ -12,6 +12,7 @@ import c8 from "@/assets/certificates/IMG-20260921-WA0003.jpg.asset.json";
 import c9 from "@/assets/certificates/IMG-20260921-WA0009.jpg.asset.json";
 import c11 from "@/assets/certificates/IMG-20260921-WA0005.jpg.asset.json";
 import c13 from "@/assets/certificates/IMG-20260921-WA0000.jpg.asset.json";
+import c14 from "@/assets/certificates/hania-fayyaz-r14.jpg.asset.json";
 
 const CERTS = [
   { name: "Neha Sham", id: "DTA-2026-R1", src: c1.url },
@@ -25,6 +26,7 @@ const CERTS = [
   { name: "Zoona Aslam", id: "DTA-2026-R9", src: c9.url },
   { name: "Eman Ali", id: "DTA-2026-R11", src: c11.url },
   { name: "Rida Jabeen", id: "DTA-2026-R13", src: c13.url },
+  { name: "Hania Fayyaz", id: "DTA-2026-R14", src: c14.url },
 ];
 
 const fileName = (name: string, id: string) => `${name.replace(/\s+/g, "-")}-${id}.jpg`;

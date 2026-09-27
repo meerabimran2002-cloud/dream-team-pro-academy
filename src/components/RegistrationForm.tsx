@@ -4,7 +4,7 @@ import { Loader2, Send } from "lucide-react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { useT } from "@/lib/i18n";
-import { SectionHead } from "./Curriculum";
+import { SectionHead } from "./SectionHead";
 
 const schema = z.object({
   course: z.enum(["prompt_engineering", "ai_cartoon_creation"]),

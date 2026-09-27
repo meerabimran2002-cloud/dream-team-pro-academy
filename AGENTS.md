@@ -1,0 +1,1 @@
+- Keep shared section headings in their own component, independent of optional page sections, so removing a section cannot break other pages.

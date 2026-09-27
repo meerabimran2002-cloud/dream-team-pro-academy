@@ -52,6 +52,7 @@ type FeedbackRow = {
   email: string | null;
   rating: number;
   message: string;
+  is_approved: boolean;
   created_at: string;
 };
 
