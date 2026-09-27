@@ -1,5 +1,5 @@
 import { useT } from "@/lib/i18n";
-import { SectionHead } from "./Curriculum";
+import { SectionHead } from "./SectionHead";
 
 const steps = [
   { n: "01", t: "Apply & Reserve", d: "Submit the registration form to reserve your seat in the limited cohort." },

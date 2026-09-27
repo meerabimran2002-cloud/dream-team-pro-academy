@@ -27,7 +27,7 @@ export function Hero() {
             {t.hero_cta}
           </a>
           <a
-            href="#curriculum"
+            href="#faq"
             className="glass px-7 py-3.5 rounded-xl font-semibold text-sm tracking-wide hover:scale-105 transition"
           >
             {t.hero_cta_2}

@@ -4,7 +4,7 @@ import { Quote, Star, Loader2 } from "lucide-react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { useT } from "@/lib/i18n";
-import { SectionHead } from "./Curriculum";
+import { SectionHead } from "./SectionHead";
 
 const schema = z.object({
   name: z.string().trim().min(2).max(80),
@@ -72,7 +72,7 @@ export function Feedback() {
               {[...reviews, ...reviews].map((review, index) => (
                 <article key={`${review.id}-${index}`} className="review-card glass">
                   <Quote className="h-5 w-5 text-primary" />
-                  <p className="mt-3 line-clamp-3 text-sm leading-6 text-foreground/90">{review.message}</p>
+                  <p className="mt-3 whitespace-pre-wrap break-words text-sm leading-6 text-foreground/90">{review.message}</p>
                   <div className="mt-4 flex items-center justify-between gap-3">
                     <span className="font-semibold">{review.name}</span>
                     <span className="flex" aria-label={`${review.rating} out of 5 stars`}>

@@ -5,3 +5,4 @@
 - [ ] Show approved student feedback publicly in a continuously moving strip.
 - [ ] Lock the site to a Cream Light and Deep Ocean visual theme.
 - [ ] Verify desktop and mobile layouts and key interactions.
+- [ ] Add Hania Fayyaz's Batch 1 certificate, show complete feedback, and remove Curriculum from the site.
