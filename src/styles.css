@@ -323,8 +323,8 @@
 }
 
 @keyframes review-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
 }
 
 @utility review-marquee {
@@ -337,27 +337,29 @@
   display: flex;
   align-items: flex-start;
   width: max-content;
-  gap: 1rem;
-  animation: review-scroll 32s linear infinite;
+  animation: review-scroll 80s linear infinite;
 
-  &:hover { animation-play-state: paused; }
+  &:active { animation-play-state: paused; }
+}
+
+@media (hover: hover) {
+  .review-track:hover { animation-play-state: paused; }
 }
 
 @utility review-card {
   width: min(20rem, calc(100vw - 3rem));
   flex: none;
+  margin-right: 1rem;
   border-radius: var(--radius-lg);
   padding: 1.25rem;
 }
 
 @media (max-width: 639px) {
   .review-marquee {
-    overflow: visible;
-    mask-image: none;
+    mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
   }
-  .review-track { display: grid; width: 100%; animation: none; }
-  .review-card { width: 100%; }
-  .review-card:nth-child(n+16) { display: none; }
+  .review-track { animation-duration: 100s; }
+  .review-card { width: min(18rem, calc(100vw - 3rem)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
