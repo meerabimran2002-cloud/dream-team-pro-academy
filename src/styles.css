@@ -335,6 +335,7 @@
 
 @utility review-track {
   display: flex;
+  align-items: flex-start;
   width: max-content;
   gap: 1rem;
   animation: review-scroll 32s linear infinite;
@@ -347,6 +348,16 @@
   flex: none;
   border-radius: var(--radius-lg);
   padding: 1.25rem;
+}
+
+@media (max-width: 639px) {
+  .review-marquee {
+    overflow-x: auto;
+    mask-image: none;
+    scroll-snap-type: x proximity;
+  }
+  .review-track { animation: none; }
+  .review-card { scroll-snap-align: start; }
 }
 
 @media (prefers-reduced-motion: reduce) {
