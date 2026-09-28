@@ -14,19 +14,22 @@ import c11 from "@/assets/certificates/IMG-20260921-WA0005.jpg.asset.json";
 import c13 from "@/assets/certificates/IMG-20260921-WA0000.jpg.asset.json";
 import c14 from "@/assets/certificates/hania-fayyaz-r14.jpg.asset.json";
 
+const LOVABLE_ASSET_ORIGIN = "https://id-preview--95d81928-529d-4443-b010-50411297a346.lovable.app";
+const assetUrl = (path: string) => new URL(path, LOVABLE_ASSET_ORIGIN).href;
+
 const CERTS = [
-  { name: "Neha Sham", id: "DTA-2026-R1", src: c1.url },
-  { name: "Javeria Javed", id: "DTA-2026-R2", src: c2.url },
-  { name: "Sana Shoukat", id: "DTA-2026-R3", src: c3.url },
-  { name: "Zainab Rizvii", id: "DTA-2026-R4", src: c4.url },
-  { name: "Rabbiya Rashid", id: "DTA-2026-R5", src: c5.url },
-  { name: "Eman Fatima", id: "DTA-2026-R6", src: c6.url },
-  { name: "Dil Awaiz", id: "DTA-2026-R7", src: c7.url },
-  { name: "Ghazia Malik hussain", id: "DTA-2026-R8", src: c8.url },
-  { name: "Zoona Aslam", id: "DTA-2026-R9", src: c9.url },
-  { name: "Eman Ali", id: "DTA-2026-R11", src: c11.url },
-  { name: "Rida Jabeen", id: "DTA-2026-R13", src: c13.url },
-  { name: "Hania Fayyaz", id: "DTA-2026-R14", src: c14.url },
+  { name: "Neha Sham", id: "DTA-2026-R1", src: assetUrl(c1.url) },
+  { name: "Javeria Javed", id: "DTA-2026-R2", src: assetUrl(c2.url) },
+  { name: "Sana Shoukat", id: "DTA-2026-R3", src: assetUrl(c3.url) },
+  { name: "Zainab Rizvii", id: "DTA-2026-R4", src: assetUrl(c4.url) },
+  { name: "Rabbiya Rashid", id: "DTA-2026-R5", src: assetUrl(c5.url) },
+  { name: "Eman Fatima", id: "DTA-2026-R6", src: assetUrl(c6.url) },
+  { name: "Dil Awaiz", id: "DTA-2026-R7", src: assetUrl(c7.url) },
+  { name: "Ghazia Malik hussain", id: "DTA-2026-R8", src: assetUrl(c8.url) },
+  { name: "Zoona Aslam", id: "DTA-2026-R9", src: assetUrl(c9.url) },
+  { name: "Eman Ali", id: "DTA-2026-R11", src: assetUrl(c11.url) },
+  { name: "Rida Jabeen", id: "DTA-2026-R13", src: assetUrl(c13.url) },
+  { name: "Hania Fayyaz", id: "DTA-2026-R14", src: assetUrl(c14.url) },
 ];
 
 const fileName = (name: string, id: string) => `${name.replace(/\s+/g, "-")}-${id}.jpg`;
