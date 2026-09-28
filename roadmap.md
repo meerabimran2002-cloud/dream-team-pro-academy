@@ -6,3 +6,4 @@
 - [x] Lock the site to a Cream Light and Deep Ocean visual theme.
 - [x] Verify desktop and mobile layouts and public certificate/feedback interactions.
 - [x] Add Hania Fayyaz's Batch 1 certificate, show complete feedback, and remove Curriculum from the site.
+- [x] Make every certificate image load from the Vercel deployment.

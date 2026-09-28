@@ -1,1 +1,2 @@
 - Keep shared section headings in their own component, independent of optional page sections, so removing a section cannot break other pages.
+- Resolve Lovable-hosted certificate asset paths against the stable Lovable preview origin so external Vercel deployments can display them.
