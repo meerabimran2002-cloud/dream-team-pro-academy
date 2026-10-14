@@ -41,10 +41,11 @@ type Registration = {
 const COURSES = [
   { id: "prompt_engineering", label: "Prompt Engineering", batches: [1, 2, 3] as number[] },
   { id: "ai_cartoon_creation", label: "AI Cartoon Creation", batches: [1] as number[] },
+  { id: "personal_branding", label: "Personal Branding", batches: [1] as number[] },
 ];
 
 const batchStatus = (course: string, b: number) =>
-  course === "ai_cartoon_creation" ? "Open" : b === 3 ? "Open" : "Closed";
+  course !== "prompt_engineering" ? "Open" : b === 3 ? "Open" : "Closed";
 
 type FeedbackRow = {
   id: string;
