@@ -7,3 +7,4 @@
 - [x] Verify desktop and mobile layouts and public certificate/feedback interactions.
 - [x] Add Hania Fayyaz's Batch 1 certificate, show complete feedback, and remove Curriculum from the site.
 - [x] Make every certificate image load from the Vercel deployment.
+- [x] Recolor the whole site to a white base with light pink accents.
