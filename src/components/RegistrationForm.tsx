@@ -7,7 +7,7 @@ import { useT } from "@/lib/i18n";
 import { SectionHead } from "./SectionHead";
 
 const schema = z.object({
-  course: z.enum(["prompt_engineering", "ai_cartoon_creation"]),
+  course: z.enum(["prompt_engineering", "ai_cartoon_creation", "personal_branding"]),
   full_name: z.string().trim().min(2).max(100),
   father_name: z.string().trim().min(2).max(100),
   gender: z.enum(["male", "female", "other"]),
@@ -76,6 +76,7 @@ export function RegistrationForm() {
             <select name="course" className={FIELD} required defaultValue="prompt_engineering">
               <option value="prompt_engineering">Prompt Engineering — Batch 3 (Open)</option>
               <option value="ai_cartoon_creation">AI Cartoon Creation — New Course (Open)</option>
+              <option value="personal_branding">Personal Branding — New Course (Open)</option>
             </select>
           </Field>
           <Field label="Full Name" required><input name="full_name" className={FIELD} placeholder="Your full name" required /></Field>

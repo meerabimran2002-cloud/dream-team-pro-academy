@@ -1,4 +1,4 @@
-import { CheckCircle2, Sparkles, Clock, Palette } from "lucide-react";
+import { CheckCircle2, Sparkles, Clock, Palette, UserRound } from "lucide-react";
 import { useT } from "@/lib/i18n";
 
 export function Countdown() {
@@ -11,7 +11,7 @@ export function Countdown() {
           <Clock className="h-3.5 w-3.5 text-primary" />
           <span>{t.cd_title}</span>
         </div>
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <div className="glass rounded-xl p-5 flex items-start gap-3 opacity-80">
             <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
             <div>
@@ -35,6 +35,17 @@ export function Countdown() {
               <div className="text-xs uppercase tracking-widest text-primary">{t.cartoon_title}</div>
               <div className="mt-1 font-semibold text-sm sm:text-base gradient-text">{t.cartoon_status}</div>
               <p className="mt-2 text-xs text-muted-foreground">{t.cartoon_sub}</p>
+              <a href="#register" className="mt-3 inline-flex text-xs font-semibold text-primary hover:underline">
+                Reserve seat →
+              </a>
+            </div>
+          </div>
+          <div className="glass rounded-xl p-5 flex items-start gap-3 ring-1 ring-accent/40">
+            <UserRound className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+            <div>
+              <div className="text-xs uppercase tracking-widest text-primary">Personal Branding</div>
+              <div className="mt-1 font-semibold text-sm sm:text-base gradient-text">New Course — Registration Open</div>
+              <p className="mt-2 text-xs text-muted-foreground">Build a strong online presence, grow your profile and stand out with your personal brand. Live online classes with certificate.</p>
               <a href="#register" className="mt-3 inline-flex text-xs font-semibold text-primary hover:underline">
                 Reserve seat →
               </a>
